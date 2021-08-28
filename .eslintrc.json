@@ -23,6 +23,16 @@
         "react-hooks",
         "prettier"
     ],
+    "overrides": [
+        {
+            "files": [
+                "**/*.stories.*"
+            ],
+            "rules": {
+                "import/no-anonymous-default-export": "off"
+            }
+        }
+    ],
     "rules": {
         "prettier/prettier": "error",
         "@typescript-eslint/explicit-module-boundary-types": "off",
@@ -32,6 +42,7 @@
         "react-hooks/exhaustive-deps": "warn",
         "react/react-in-jsx-scope": "off",
         "object-curly-newline": "off",
+        "react/jsx-props-no-spreading": "off",
         "react/jsx-filename-extension": [
             1,
             {
