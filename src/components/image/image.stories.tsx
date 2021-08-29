@@ -9,7 +9,7 @@ export default {
   title: 'Components/Image',
 } as Meta;
 
-const Layout = styled.div`
+const LayoutStyled = styled.div`
   display: flex;
 
   > *:not(:first-child) {
@@ -18,11 +18,11 @@ const Layout = styled.div`
 `;
 
 const Default = () => (
-  <Layout>
+  <LayoutStyled>
     <Image src={thief} size={EImageSizes.small} alt="thief" />
     <Image src={thief} alt="thief" />
     <Image src={thief} size={EImageSizes.large} alt="thief" />
-  </Layout>
+  </LayoutStyled>
 );
 
 export { Default };
