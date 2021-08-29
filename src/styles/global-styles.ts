@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-import VCR_OSD_MONO from '../assets/fonts/VCR_OSD_MONO.ttf';
+import VCR_OSD_MONO from '@/assets/fonts/VCR_OSD_MONO.ttf';
 import { theme } from './theme';
 
 const GlobalStyles = createGlobalStyle`
@@ -29,8 +29,8 @@ const GlobalStyles = createGlobalStyle`
     
     display: flex;
     
-    color: ${theme.colors.white};
-    background: ${theme.colors.black};
+    color: ${(props) => props.theme.colors.white};
+    background: ${(props) => props.theme.colors.black};
   }
   
   #root {
@@ -42,8 +42,8 @@ const GlobalStyles = createGlobalStyle`
     flex-direction: column;
     align-items: flex-start;
     
-    font-size: ${theme.fontSizes[0]};
-    font-family: ${theme.fontFamily};
+    font-size: ${(props) => props.theme.fontSizes[0]};
+    font-family: ${(props) => props.theme.fontFamily};
     line-height: 1.4;
   }
   

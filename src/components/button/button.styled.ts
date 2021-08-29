@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { space } from '../../styles/space';
+import { space } from '@/styles';
 
 const ButtonStyled = styled.button`
   padding: ${space(3)} ${space(6)};

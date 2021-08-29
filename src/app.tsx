@@ -1,3 +1,5 @@
-const App = () => <div>App</div>;
+import { Button } from './components';
+
+const App = () => <Button>App</Button>;
 
 export { App };

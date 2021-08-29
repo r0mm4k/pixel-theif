@@ -34,6 +34,12 @@
   },
   "overrides": [
     {
+      "files": ["webpack.*", "*.loader.*"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": ["off"]
+      }
+    },
+    {
       "files": [
         "**/*.stories.*"
       ],
