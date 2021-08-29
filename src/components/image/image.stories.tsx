@@ -19,9 +19,9 @@ const Layout = styled.div`
 
 const Default = () => (
   <Layout>
-    <Image src={thief} size={EImageSizes.small} />
-    <Image src={thief} />
-    <Image src={thief} size={EImageSizes.large} />
+    <Image src={thief} size={EImageSizes.small} alt="thief" />
+    <Image src={thief} alt="thief" />
+    <Image src={thief} size={EImageSizes.large} alt="thief" />
   </Layout>
 );
 
