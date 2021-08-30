@@ -4,7 +4,7 @@ import { Button, EImageSizes, Heading, Image, Menu } from '@/components';
 import treasure from '@/assets/images/treasure.png';
 import { ICompleteProps } from './complete.types';
 
-const Complete: FC<ICompleteProps> = ({ onGoHome }) => {
+const Complete: FC<ICompleteProps> = ({ onGoHomef }) => {
   return (
     <Menu>
       <Heading>Quest Complete!</Heading>
