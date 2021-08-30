@@ -4,7 +4,7 @@ import { GameOver } from '.';
 import { IGameOverProps } from './game-over.types';
 
 export default {
-  title: 'Screens/GameOver',
+  title: 'Screens/Game Over',
   component: GameOver,
 } as Meta;
 

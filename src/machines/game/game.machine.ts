@@ -20,12 +20,12 @@ const gameMachine = createMachine<null, TGameEvent, IGameState>({
       states: {
         level1: {
           on: {
-            PLAYER_WALKED_TROUGH_DOOR: 'level2',
+            PLAYER_WALKED_THROUGH_DOOR: 'level2',
           },
         },
         level2: {
           on: {
-            PLAYER_WALKED_TROUGH_DOOR: 'level3',
+            PLAYER_WALKED_THROUGH_DOOR: 'level3',
           },
         },
         level3: {},

@@ -22,8 +22,8 @@ interface IHomeButtonClicked {
   type: 'HOME_BUTTON_CLICKED';
 }
 
-interface IPlayerWalkedTroughDoor {
-  type: 'PLAYER_WALKED_TROUGH_DOOR';
+interface IPlayerWalkedThroughDoor {
+  type: 'PLAYER_WALKED_THROUGH_DOOR';
 }
 
 interface IGameState {
@@ -44,7 +44,7 @@ type TGameEvent =
   | IPlayerGotTreasure
   | IRestartButtonClicked
   | IHomeButtonClicked
-  | IPlayerWalkedTroughDoor;
+  | IPlayerWalkedThroughDoor;
 
 export type {
   IStartButtonClicked,

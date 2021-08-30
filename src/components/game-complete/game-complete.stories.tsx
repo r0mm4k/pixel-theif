@@ -4,7 +4,7 @@ import { GameComplete } from '.';
 import { IGameCompleteProps } from './game-complete.types';
 
 export default {
-  title: 'Screens/GameComplete',
+  title: 'Screens/Game Complete',
   component: GameComplete,
 } as Meta;
 
