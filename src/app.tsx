@@ -1,5 +1,5 @@
-import { Button } from './components';
+import { Game } from './components';
 
-const App = () => <Button>App</Button>;
+const App = () => <Game />;
 
 export { App };

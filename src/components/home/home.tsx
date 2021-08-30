@@ -1,6 +1,9 @@
 import { FC } from 'react';
 
-import { Button, EImageSizes, Heading, Image, Menu } from '@/components';
+import { Button } from '@/components/button';
+import { Menu } from '@/components/menu';
+import { Heading } from '@/components/heading';
+import { Image, EImageSizes } from '@/components/image';
 import thief from '@/assets/images/thief.gif';
 import { IHomeProps } from './home.types';
 

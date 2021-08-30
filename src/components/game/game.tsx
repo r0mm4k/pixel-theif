@@ -1,7 +1,10 @@
 import { useMachine } from '@xstate/react';
 
 import { gameMachine } from '@/machines';
-import { Home, GameOver, GameComplete, Button } from '@/components';
+import { Home } from '@/components/home';
+import { GameOver } from '@/components/game-over';
+import { GameComplete } from '@/components/game-complete';
+import { Button } from '@/components/button';
 
 const Game = () => {
   const [state, send] = useMachine(gameMachine);
