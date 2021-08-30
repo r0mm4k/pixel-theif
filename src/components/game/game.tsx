@@ -14,13 +14,37 @@ const Game = () => {
   }
 
   if (state.matches('playing')) {
-    return (
-      <>
-        <p>playing</p>
-        <Button onClick={() => send('PLAYER_DIED')}>PLAYER_DIED</Button>
-        <Button onClick={() => send('PLAYER_GOT_TREASURE')}>PLAYER_GOT_TREASURE</Button>
-      </>
-    );
+    if (state.matches('playing.level1')) {
+      return (
+        <>
+          <p>level 1</p>
+          <Button onClick={() => send('PLAYER_WALKED_TROUGH_DOOR')}>
+            PLAYER_WALKED_TROUGH_DOOR
+          </Button>
+        </>
+      );
+    }
+
+    if (state.matches('playing.level2')) {
+      return (
+        <>
+          <p>level 2</p>
+          <Button onClick={() => send('PLAYER_WALKED_TROUGH_DOOR')}>
+            PLAYER_WALKED_TROUGH_DOOR
+          </Button>
+          <Button onClick={() => send('PLAYER_DIED')}>PLAYER_DIED</Button>
+        </>
+      );
+    }
+
+    if (state.matches('playing.level3')) {
+      return (
+        <>
+          <p>level 3</p>
+          <Button onClick={() => send('PLAYER_GOT_TREASURE')}>PLAYER_GOT_TREASURE</Button>
+        </>
+      );
+    }
   }
 
   if (state.matches('gameOver')) {
