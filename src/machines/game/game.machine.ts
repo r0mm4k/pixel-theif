@@ -16,6 +16,20 @@ const gameMachine = createMachine<null, TGameEvent, IGameState>({
         PLAYER_DIED: 'gameOver',
         PLAYER_GOT_TREASURE: 'gameComplete',
       },
+      initial: 'level1',
+      states: {
+        level1: {
+          on: {
+            PLAYER_WALKED_TROUGH_DOOR: 'level2',
+          },
+        },
+        level2: {
+          on: {
+            PLAYER_WALKED_TROUGH_DOOR: 'level3',
+          },
+        },
+        level3: {},
+      },
     },
     gameOver: {
       on: {

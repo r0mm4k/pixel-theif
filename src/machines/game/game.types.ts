@@ -18,9 +18,24 @@ interface IHomeButtonClicked {
   type: 'HOME_BUTTON_CLICKED';
 }
 
+interface IHomeButtonClicked {
+  type: 'HOME_BUTTON_CLICKED';
+}
+
+interface IPlayerWalkedTroughDoor {
+  type: 'PLAYER_WALKED_TROUGH_DOOR';
+}
+
 interface IGameState {
   context: null;
-  value: 'home' | 'playing' | 'gameOver' | 'gameComplete';
+  value:
+    | 'home'
+    | 'playing'
+    | 'playing.level1'
+    | 'playing.level2'
+    | 'playing.level3'
+    | 'gameOver'
+    | 'gameComplete';
 }
 
 type TGameEvent =
@@ -28,7 +43,8 @@ type TGameEvent =
   | IPlayerDied
   | IPlayerGotTreasure
   | IRestartButtonClicked
-  | IHomeButtonClicked;
+  | IHomeButtonClicked
+  | IPlayerWalkedTroughDoor;
 
 export type {
   IStartButtonClicked,
