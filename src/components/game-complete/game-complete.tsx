@@ -2,9 +2,9 @@ import { FC } from 'react';
 
 import { Button, EImageSizes, Heading, Image, Menu } from '@/components';
 import treasure from '@/assets/images/treasure.png';
-import { ICompleteProps } from './complete.types';
+import { IGameCompleteProps } from './game-complete.types';
 
-const Complete: FC<ICompleteProps> = ({ onGoHome }) => {
+const GameComplete: FC<IGameCompleteProps> = ({ onGoHome }) => {
   return (
     <Menu>
       <Heading>Quest Complete!</Heading>
@@ -14,4 +14,4 @@ const Complete: FC<ICompleteProps> = ({ onGoHome }) => {
   );
 };
 
-export { Complete };
+export { GameComplete };
