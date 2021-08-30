@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { EImageSizes, Image } from '@/components';
+import { EImageSizes, Image } from '@/components/image';
 import { LayoutStyled } from './health.styled';
 import { IHealthProps } from './health.types';
 import heart from '@/assets/images/heart.png';

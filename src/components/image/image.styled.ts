@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { space } from '@/styles';
 import { IImageStyledProps } from './image.types';
-import { EImageSizes } from '.';
+import { EImageSizes } from './image.enums';
 
 const getDimension = (size: EImageSizes) => {
   switch (size) {
