@@ -1,11 +1,15 @@
-import { Meta } from '@storybook/react';
+import { Meta, Story } from '@storybook/react';
 
 import { Health } from '.';
 
 export default {
   title: 'Components/Health',
+  component: Health,
+  args: {
+    count: 3,
+  },
 } as Meta;
 
-const Default = () => <Health count={3} />;
+const Default: Story = (args) => <Health {...args} />;
 
 export { Default };

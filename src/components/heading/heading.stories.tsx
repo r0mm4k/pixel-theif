@@ -1,11 +1,15 @@
-import { Meta } from '@storybook/react';
+import { Meta, Story } from '@storybook/react';
 
 import { Heading } from '.';
 
 export default {
   title: 'Components/Heading',
+  component: Heading,
+  args: {
+    children: 'Game Over',
+  },
 } as Meta;
 
-const Default = () => <Heading>Game Over</Heading>;
+const Default: Story = (args) => <Heading {...args} />;
 
 export { Default };

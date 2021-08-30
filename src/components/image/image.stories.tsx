@@ -1,28 +1,26 @@
-import { Meta } from '@storybook/react';
-import styled from 'styled-components';
+import { Meta, Story } from '@storybook/react';
 
-import { space } from '@/styles';
 import thief from '@/assets/images/thief.gif';
 import { EImageSizes, Image } from '.';
 
 export default {
   title: 'Components/Image',
+  component: Image,
+  args: {
+    src: thief,
+    alt: 'thief',
+    size: EImageSizes.medium,
+  },
+  argTypes: {
+    size: {
+      control: {
+        type: 'select',
+        options: EImageSizes,
+      },
+    },
+  },
 } as Meta;
 
-const LayoutStyled = styled.div`
-  display: flex;
-
-  > *:not(:first-child) {
-    margin-left: ${space(4)};
-  }
-`;
-
-const Default = () => (
-  <LayoutStyled>
-    <Image src={thief} size={EImageSizes.small} alt="thief" />
-    <Image src={thief} alt="thief" />
-    <Image src={thief} size={EImageSizes.large} alt="thief" />
-  </LayoutStyled>
-);
+const Default: Story = (args) => <Image {...args} />;
 
 export { Default };
