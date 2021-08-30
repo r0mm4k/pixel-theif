@@ -1,24 +1,31 @@
 import { useMachine } from '@xstate/react';
 
 import { gameMachine } from '@/machines';
+import { Home, GameOver, GameComplete, Button } from '@/components';
 
 const Game = () => {
-  const [state] = useMachine(gameMachine);
+  const [state, send] = useMachine(gameMachine);
 
   if (state.matches('home')) {
-    return <p>home</p>;
+    return <Home onStartGame={() => send('START_BUTTON_CLICKED')} />;
   }
 
   if (state.matches('playing')) {
-    return <p>playing</p>;
+    return (
+      <>
+        <p>playing</p>
+        <Button onClick={() => send('PLAYER_DIED')}>PLAYER_DIED</Button>
+        <Button onClick={() => send('PLAYER_GOT_TREASURE')}>PLAYER_GOT_TREASURE</Button>
+      </>
+    );
   }
 
   if (state.matches('gameOver')) {
-    return <p>gameOver</p>;
+    return <GameOver onRestart={() => send('RESTART_BUTTON_CLICKED')} />;
   }
 
   if (state.matches('gameComplete')) {
-    return <p>gameComplete</p>;
+    return <GameComplete onGoHome={() => send('HOME_BUTTON_CLICKED')} />;
   }
 
   throw new Error(`Unknown game state: ${state.value}`);
