@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { GRID_SQUARE_SIZE, NUMBER_OF_GRID_COLUMNS, NUMBER_OF_GRID_ROWS } from './grid.constants';
+import { GRID_SQUARE_SIZE, NUMBER_OF_GRID_COLUMNS, NUMBER_OF_GRID_ROWS } from '@/constants';
 import { ISquareProps } from './grid.types';
 
 const LayoutStyled = styled.section`

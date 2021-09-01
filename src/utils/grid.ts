@@ -1,4 +1,4 @@
-import { NUMBER_OF_GRID_COLUMNS, NUMBER_OF_GRID_ROWS } from './grid.constants';
+import { NUMBER_OF_GRID_COLUMNS, NUMBER_OF_GRID_ROWS } from '@/constants';
 
 const row = (level: number) =>
   Array(NUMBER_OF_GRID_COLUMNS)

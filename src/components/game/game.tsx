@@ -7,6 +7,7 @@ import { GameOver } from '@/components/game-over';
 import { GameComplete } from '@/components/game-complete';
 import { Background } from '@/components/background';
 import { Grid } from '@/components/grid';
+import { Player } from '@/components/player';
 import { IGameProps } from './game.types';
 import level1Background from '@/assets/images/level1Background.png';
 import level2Background from '@/assets/images/level2Background.png';
@@ -14,6 +15,7 @@ import level3Background from '@/assets/images/level3Background.png';
 
 const Game: FC<IGameProps> = ({ fastForwardEvents }) => {
   const [state, send] = useMachine(gameMachine);
+  const { playerActor } = state.children;
 
   useEffect(() => {
     !!fastForwardEvents && fastForwardEvents.forEach((event) => send(event));
@@ -28,7 +30,7 @@ const Game: FC<IGameProps> = ({ fastForwardEvents }) => {
       return (
         <>
           <Background src={level1Background} alt="Dungeon room" />
-          <Grid />
+          <Grid>{playerActor && <Player actor={playerActor} />}</Grid>
         </>
       );
     }
