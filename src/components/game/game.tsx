@@ -5,8 +5,12 @@ import { gameMachine } from '@/machines';
 import { Home } from '@/components/home';
 import { GameOver } from '@/components/game-over';
 import { GameComplete } from '@/components/game-complete';
-import { Button } from '@/components/button';
+import { Background } from '@/components/background';
+import { Grid } from '@/components/grid';
 import { IGameProps } from './game.types';
+import level1Background from '@/assets/images/level1Background.png';
+import level2Background from '@/assets/images/level2Background.png';
+import level3Background from '@/assets/images/level3Background.png';
 
 const Game: FC<IGameProps> = ({ fastForwardEvents }) => {
   const [state, send] = useMachine(gameMachine);
@@ -23,10 +27,8 @@ const Game: FC<IGameProps> = ({ fastForwardEvents }) => {
     if (state.matches('playing.level1')) {
       return (
         <>
-          <p>level 1</p>
-          <Button onClick={() => send('PLAYER_WALKED_THROUGH_DOOR')}>
-            PLAYER_WALKED_TROUGH_DOOR
-          </Button>
+          <Background src={level1Background} alt="Dungeon room" />
+          <Grid />
         </>
       );
     }
@@ -34,11 +36,8 @@ const Game: FC<IGameProps> = ({ fastForwardEvents }) => {
     if (state.matches('playing.level2')) {
       return (
         <>
-          <p>level 2</p>
-          <Button onClick={() => send('PLAYER_WALKED_THROUGH_DOOR')}>
-            PLAYER_WALKED_TROUGH_DOOR
-          </Button>
-          <Button onClick={() => send('PLAYER_DIED')}>PLAYER_DIED</Button>
+          <Background src={level2Background} alt="Dungeon room" />
+          <Grid />
         </>
       );
     }
@@ -46,8 +45,8 @@ const Game: FC<IGameProps> = ({ fastForwardEvents }) => {
     if (state.matches('playing.level3')) {
       return (
         <>
-          <p>level 3</p>
-          <Button onClick={() => send('PLAYER_GOT_TREASURE')}>PLAYER_GOT_TREASURE</Button>
+          <Background src={level3Background} alt="Dungeon room" />
+          <Grid />
         </>
       );
     }

@@ -11,8 +11,6 @@ const LayoutStyled = styled.section`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
-  border: 1px solid ${(props) => props.theme.colors.white};
 `;
 
 const SquareStyled = styled.div<ISquareProps>`
@@ -22,8 +20,6 @@ const SquareStyled = styled.div<ISquareProps>`
   position: absolute;
   top: ${(props) => props.y * GRID_SQUARE_SIZE}px;
   left: ${(props) => props.x * GRID_SQUARE_SIZE}px;
-
-  border: 1px solid ${(props) => props.theme.colors.white};
 `;
 
 export { LayoutStyled, SquareStyled };
