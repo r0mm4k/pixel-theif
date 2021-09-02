@@ -1,6 +1,12 @@
 import { ActorRef } from 'xstate';
 
 import { TCoords } from '@/types';
+import { EDirection } from '@/enums';
+
+interface IArrowButtonClicked {
+  type: 'ARROW_BUTTON_CLICKED';
+  direction: EDirection;
+}
 
 interface IPlayerContext {
   coords: TCoords;
@@ -13,4 +19,6 @@ interface IPlayerState {
 
 type TPlayerActor = ActorRef<any, IPlayerState>;
 
-export type { IPlayerState, TPlayerActor, IPlayerContext };
+type TPlayerEvent = IArrowButtonClicked;
+
+export type { IPlayerState, TPlayerActor, IPlayerContext, IArrowButtonClicked, TPlayerEvent };
