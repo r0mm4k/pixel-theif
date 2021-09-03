@@ -22,7 +22,7 @@ const Game: FC<IGameProps> = ({ fastForwardEvents }) => {
   }, [fastForwardEvents, send]);
 
   if (state.matches('home')) {
-    return <Home onStartGame={() => send('START_BUTTON_CLICKED')} />;
+    return <Home onStartGame={''} />;
   }
 
   if (state.matches('playing')) {
