@@ -8,6 +8,10 @@ interface IArrowButtonClicked {
   direction: EDirection;
 }
 
+interface IResetPlayerCoords {
+  type: 'RESET_PLAYER_COORDS';
+}
+
 interface IPlayerContext {
   coords: TCoords;
 }
@@ -19,6 +23,13 @@ interface IPlayerState {
 
 type TPlayerActor = ActorRef<any, IPlayerState>;
 
-type TPlayerEvent = IArrowButtonClicked;
+type TPlayerEvent = IArrowButtonClicked | IResetPlayerCoords;
 
-export type { IPlayerState, TPlayerActor, IPlayerContext, IArrowButtonClicked, TPlayerEvent };
+export type {
+  IPlayerState,
+  TPlayerActor,
+  IPlayerContext,
+  IArrowButtonClicked,
+  TPlayerEvent,
+  IResetPlayerCoords,
+};

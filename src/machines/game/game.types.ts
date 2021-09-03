@@ -1,3 +1,5 @@
+import { TCoords } from '@/types';
+
 interface IStartButtonClicked {
   type: 'START_BUTTON_CLICKED';
 }
@@ -26,6 +28,11 @@ interface IPlayerWalkedThroughDoor {
   type: 'PLAYER_WALKED_THROUGH_DOOR';
 }
 
+interface IPlayerMoved {
+  type: 'PLAYER_MOVED';
+  coords: TCoords;
+}
+
 interface IGameState {
   context: null;
   value:
@@ -44,7 +51,8 @@ type TGameEvent =
   | IPlayerGotTreasure
   | IRestartButtonClicked
   | IHomeButtonClicked
-  | IPlayerWalkedThroughDoor;
+  | IPlayerWalkedThroughDoor
+  | IPlayerMoved;
 
 export type {
   IStartButtonClicked,
@@ -52,6 +60,7 @@ export type {
   IPlayerGotTreasure,
   IRestartButtonClicked,
   IHomeButtonClicked,
+  IPlayerMoved,
   TGameEvent,
   IGameState,
 };

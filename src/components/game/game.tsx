@@ -39,7 +39,7 @@ const Game: FC<IGameProps> = ({ fastForwardEvents }) => {
       return (
         <>
           <Background src={level2Background} alt="Dungeon room" />
-          <Grid />
+          <Grid>{playerActor && <Player actor={playerActor} />}</Grid>
         </>
       );
     }
@@ -48,7 +48,7 @@ const Game: FC<IGameProps> = ({ fastForwardEvents }) => {
       return (
         <>
           <Background src={level3Background} alt="Dungeon room" />
-          <Grid />
+          <Grid>{playerActor && <Player actor={playerActor} />}</Grid>
         </>
       );
     }
