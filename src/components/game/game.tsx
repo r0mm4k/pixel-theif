@@ -22,7 +22,7 @@ const Game: FC<IGameProps> = ({ fastForwardEvents }) => {
   }, [fastForwardEvents, send]);
 
   if (state.matches('home')) {
-    return <Home onStartGame={''} />;
+    return <Home onStartGame={'fdsfsdf'} />;
   }
 
   if (state.matches('playing')) {
