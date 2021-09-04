@@ -6,7 +6,7 @@ import { coordsToPosition } from '@/utils';
 import { useControls } from '@/hooks';
 import { EDirection } from '@/enums';
 import { IPlayerProps } from './player.types';
-import { ImageStyled } from './player.styled';
+import { ImageStyled, HealthStyled } from './player.styled';
 
 const Player: FC<IPlayerProps> = ({ actor }) => {
   const [state, send] = useActor(actor);
@@ -16,11 +16,16 @@ const Player: FC<IPlayerProps> = ({ actor }) => {
     handleArrowLeft: () => send({ type: 'ARROW_BUTTON_CLICKED', direction: EDirection.left }),
     handleArrowRight: () => send({ type: 'ARROW_BUTTON_CLICKED', direction: EDirection.right }),
   });
-  const { coords } = state.context;
 
+  const { coords, health } = state.context;
   const [left, top] = coordsToPosition(coords);
 
-  return <ImageStyled left={left} top={top} src={thief} alt="thief" />;
+  return (
+    <>
+      <HealthStyled count={health} />
+      <ImageStyled left={left} top={top} src={thief} alt="thief" />
+    </>
+  );
 };
 
 export { Player };

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
+import { space } from '@/styles';
 import { Image } from '@/components/image';
+import { Health } from '@/components/health';
 import { IImageStyledProps } from './player.types';
 
 const ImageStyled = styled(Image)<IImageStyledProps>`
@@ -9,4 +11,10 @@ const ImageStyled = styled(Image)<IImageStyledProps>`
   top: ${(props) => props.top};
 `;
 
-export { ImageStyled };
+const HealthStyled = styled(Health)`
+  position: absolute;
+  top: -${space(30)};
+  left: -${space(2)};
+`;
+
+export { ImageStyled, HealthStyled };

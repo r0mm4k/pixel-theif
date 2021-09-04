@@ -14,6 +14,7 @@ interface IResetPlayerCoords {
 
 interface IPlayerContext {
   coords: TCoords;
+  health: number;
 }
 
 interface IPlayerState {
@@ -21,9 +22,9 @@ interface IPlayerState {
   value: 'alive' | 'dead';
 }
 
-type TPlayerActor = ActorRef<any, IPlayerState>;
-
 type TPlayerEvent = IArrowButtonClicked | IResetPlayerCoords;
+
+type TPlayerActor = ActorRef<IArrowButtonClicked, IPlayerState>;
 
 export type {
   IPlayerState,

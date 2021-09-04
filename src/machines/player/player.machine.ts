@@ -2,7 +2,7 @@ import { assign, createMachine, sendParent } from 'xstate';
 import { choose } from 'xstate/lib/actions';
 
 import { IPlayerMoved } from '@/machines/game';
-import { PLAYER_STARTING_COORDS } from '@/constants';
+import { PLAYER_STARTING_COORDS, PLAYER_STARTING_HEALTH } from '@/constants';
 import { getTargetCoords, isAllowCoords } from '@/utils';
 import { IPlayerContext, IPlayerState, TPlayerEvent } from '.';
 
@@ -11,6 +11,7 @@ const playerMachine = createMachine<IPlayerContext, TPlayerEvent, IPlayerState>(
     id: 'player',
     context: {
       coords: PLAYER_STARTING_COORDS,
+      health: PLAYER_STARTING_HEALTH,
     },
     initial: 'alive',
     states: {
@@ -37,14 +38,19 @@ const playerMachine = createMachine<IPlayerContext, TPlayerEvent, IPlayerState>(
 
         return event;
       }),
-      move: assign(({ coords }, event) => {
-        if (event.type !== 'ARROW_BUTTON_CLICKED') return { coords };
+      move: assign((context, event) => {
+        if (event.type !== 'ARROW_BUTTON_CLICKED') return context;
 
-        const targetCoords = getTargetCoords({ coords, direction: event.direction });
+        const targetCoords = getTargetCoords({
+          coords: context.coords,
+          direction: event.direction,
+        });
 
-        return { coords: targetCoords };
+        return { ...context, coords: targetCoords };
       }),
-      onResetPlayerCoords: assign(() => ({ coords: PLAYER_STARTING_COORDS })),
+      onResetPlayerCoords: assign((context) => {
+        return { ...context, coords: PLAYER_STARTING_COORDS };
+      }),
     },
     guards: {
       isAllowMove: ({ coords }, event) => {
