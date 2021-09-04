@@ -5,6 +5,7 @@ import { IPlayerMoved } from '@/machines';
 
 interface IMonsterContext {
   coords: TCoords;
+  playerCoords?: TCoords;
 }
 
 interface IMonsterState {

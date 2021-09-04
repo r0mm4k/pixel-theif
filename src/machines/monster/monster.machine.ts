@@ -4,7 +4,6 @@ import { MONSTER_STARTING_COORDS } from '@/constants';
 import { EDirection } from '@/enums';
 import { getTargetCoords } from '@/utils';
 import { IMonsterContext, IMonsterState, TMonsterEvent } from '.';
-import { log } from 'xstate/lib/actions';
 
 const monsterMachine = createMachine<IMonsterContext, TMonsterEvent, IMonsterState>(
   {
@@ -15,7 +14,7 @@ const monsterMachine = createMachine<IMonsterContext, TMonsterEvent, IMonsterSta
     initial: 'up',
     on: {
       PLAYER_MOVED: {
-        actions: log(),
+        actions: 'setPlayerCoords',
       },
     },
     states: {
@@ -46,6 +45,10 @@ const monsterMachine = createMachine<IMonsterContext, TMonsterEvent, IMonsterSta
       moveUp: assign((context) => ({
         ...context,
         coords: getTargetCoords({ coords: context.coords, direction: EDirection.up }),
+      })),
+      setPlayerCoords: assign((context, event) => ({
+        ...context,
+        playerCoords: event.coords,
       })),
     },
   }
