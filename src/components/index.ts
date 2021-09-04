@@ -9,5 +9,6 @@ export * from './health';
 export * from './home';
 export * from './image';
 export * from './menu';
+export * from './monster';
 export * from './player';
 export * from './treasure';

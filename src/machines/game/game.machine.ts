@@ -2,8 +2,9 @@ import { createMachine, send } from 'xstate';
 import { isEqual } from 'lodash';
 import { choose } from 'xstate/lib/actions';
 
-import { playerMachine } from '@/machines/player';
 import { DOOR_COORDS, TREASURE_COORDS } from '@/constants';
+import { playerMachine } from '@/machines/player';
+import { monsterMachine } from '@/machines/monster';
 import { IGameState, TGameEvent } from '.';
 
 const gameMachine = createMachine<null, TGameEvent, IGameState>(
@@ -36,6 +37,10 @@ const gameMachine = createMachine<null, TGameEvent, IGameState>(
             },
           },
           level2: {
+            invoke: {
+              id: 'monsterActor',
+              src: 'monsterMachine',
+            },
             entry: 'resetPlayerCoords',
             on: {
               PLAYER_WALKED_THROUGH_DOOR: 'level3',
@@ -64,9 +69,7 @@ const gameMachine = createMachine<null, TGameEvent, IGameState>(
     },
   },
   {
-    services: {
-      playerMachine,
-    },
+    services: { playerMachine, monsterMachine },
     actions: {
       onPlayerMoved: choose([{ cond: 'isPlayerAtDoor', actions: 'playerWalkedThrowDoor' }]),
       playerWalkedThrowDoor: send('PLAYER_WALKED_THROUGH_DOOR'),

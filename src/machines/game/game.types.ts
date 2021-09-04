@@ -3,31 +3,24 @@ import { TCoords } from '@/types';
 interface IStartButtonClicked {
   type: 'START_BUTTON_CLICKED';
 }
-
 interface IPlayerDied {
   type: 'PLAYER_DIED';
 }
-
 interface IPlayerGotTreasure {
   type: 'PLAYER_GOT_TREASURE';
 }
-
 interface IRestartButtonClicked {
   type: 'RESTART_BUTTON_CLICKED';
 }
-
 interface IHomeButtonClicked {
   type: 'HOME_BUTTON_CLICKED';
 }
-
 interface IHomeButtonClicked {
   type: 'HOME_BUTTON_CLICKED';
 }
-
 interface IPlayerWalkedThroughDoor {
   type: 'PLAYER_WALKED_THROUGH_DOOR';
 }
-
 interface IPlayerMoved {
   type: 'PLAYER_MOVED';
   coords: TCoords;

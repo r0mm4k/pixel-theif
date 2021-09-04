@@ -1,5 +1,5 @@
-import { useMachine } from '@xstate/react';
 import { FC, useEffect } from 'react';
+import { useMachine } from '@xstate/react';
 
 import level1Background from '@/assets/images/level1Background.png';
 import level2Background from '@/assets/images/level2Background.png';
@@ -12,11 +12,12 @@ import { Background } from '@/components/background';
 import { Grid } from '@/components/grid';
 import { Player } from '@/components/player';
 import { Treasure } from '@/components/treasure';
+import { Monster } from '@/components/monster';
 import { IGameProps } from './game.types';
 
 const Game: FC<IGameProps> = ({ fastForwardEvents }) => {
   const [state, send] = useMachine(gameMachine);
-  const { playerActor } = state.children;
+  const { playerActor, monsterActor } = state.children;
 
   useEffect(() => {
     !!fastForwardEvents && fastForwardEvents.forEach((event) => send(event));
@@ -40,7 +41,10 @@ const Game: FC<IGameProps> = ({ fastForwardEvents }) => {
       return (
         <>
           <Background src={level2Background} alt="Dungeon room" />
-          <Grid>{playerActor && <Player actor={playerActor} />}</Grid>
+          <Grid>
+            {playerActor && <Player actor={playerActor} />}
+            {monsterActor && <Monster actor={monsterActor} />}
+          </Grid>
         </>
       );
     }

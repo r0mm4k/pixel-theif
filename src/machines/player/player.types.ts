@@ -7,7 +7,6 @@ interface IArrowButtonClicked {
   type: 'ARROW_BUTTON_CLICKED';
   direction: EDirection;
 }
-
 interface IResetPlayerCoords {
   type: 'RESET_PLAYER_COORDS';
 }
@@ -24,7 +23,7 @@ interface IPlayerState {
 
 type TPlayerEvent = IArrowButtonClicked | IResetPlayerCoords;
 
-type TPlayerActor = ActorRef<IArrowButtonClicked, IPlayerState>;
+type TPlayerActor = ActorRef<TPlayerEvent, IPlayerState>;
 
 export type {
   IPlayerState,
