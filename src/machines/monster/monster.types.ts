@@ -8,7 +8,7 @@ interface IMonsterContext {
 
 interface IMonsterState {
   context: IMonsterContext;
-  value: 'active';
+  value: 'up' | 'down';
 }
 
 type TMonsterActor = ActorRef<any, IMonsterState>;
