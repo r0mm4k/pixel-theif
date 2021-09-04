@@ -3,7 +3,7 @@ import { isEqual } from 'lodash';
 import { choose } from 'xstate/lib/actions';
 
 import { playerMachine } from '@/machines/player';
-import { DOOR_COORDS } from '@/constants';
+import { DOOR_COORDS, TREASURE_COORDS } from '@/constants';
 import { IGameState, TGameEvent } from '.';
 
 const gameMachine = createMachine<null, TGameEvent, IGameState>(
@@ -43,6 +43,11 @@ const gameMachine = createMachine<null, TGameEvent, IGameState>(
           },
           level3: {
             entry: 'resetPlayerCoords',
+            on: {
+              PLAYER_MOVED: {
+                actions: 'onPlayerMovedFinalLevel',
+              },
+            },
           },
         },
       },
@@ -63,15 +68,24 @@ const gameMachine = createMachine<null, TGameEvent, IGameState>(
       playerMachine,
     },
     actions: {
-      onPlayerMoved: choose([{ cond: 'isPlayerAtDoor', actions: ['playerWalkedThrowDoor'] }]),
+      onPlayerMoved: choose([{ cond: 'isPlayerAtDoor', actions: 'playerWalkedThrowDoor' }]),
       playerWalkedThrowDoor: send('PLAYER_WALKED_THROUGH_DOOR'),
       resetPlayerCoords: send('RESET_PLAYER_COORDS', { to: 'playerActor' }),
+      onPlayerMovedFinalLevel: choose([
+        { cond: 'isPlayerAtTreasure', actions: ['playerGotTreasure'] },
+      ]),
+      playerGotTreasure: send('PLAYER_GOT_TREASURE'),
     },
     guards: {
       isPlayerAtDoor: (_, event) => {
         if (event.type !== 'PLAYER_MOVED') return false;
 
         return isEqual(event.coords, DOOR_COORDS);
+      },
+      isPlayerAtTreasure: (_, event) => {
+        if (event.type !== 'PLAYER_MOVED') return false;
+
+        return isEqual(event.coords, TREASURE_COORDS);
       },
     },
   }

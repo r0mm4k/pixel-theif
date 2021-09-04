@@ -1,6 +1,9 @@
 import { useMachine } from '@xstate/react';
 import { FC, useEffect } from 'react';
 
+import level1Background from '@/assets/images/level1Background.png';
+import level2Background from '@/assets/images/level2Background.png';
+import level3Background from '@/assets/images/level3Background.png';
 import { gameMachine } from '@/machines';
 import { Home } from '@/components/home';
 import { GameOver } from '@/components/game-over';
@@ -8,10 +11,8 @@ import { GameComplete } from '@/components/game-complete';
 import { Background } from '@/components/background';
 import { Grid } from '@/components/grid';
 import { Player } from '@/components/player';
+import { Treasure } from '@/components/treasure';
 import { IGameProps } from './game.types';
-import level1Background from '@/assets/images/level1Background.png';
-import level2Background from '@/assets/images/level2Background.png';
-import level3Background from '@/assets/images/level3Background.png';
 
 const Game: FC<IGameProps> = ({ fastForwardEvents }) => {
   const [state, send] = useMachine(gameMachine);
@@ -48,7 +49,10 @@ const Game: FC<IGameProps> = ({ fastForwardEvents }) => {
       return (
         <>
           <Background src={level3Background} alt="Dungeon room" />
-          <Grid>{playerActor && <Player actor={playerActor} />}</Grid>
+          <Grid>
+            {playerActor && <Player actor={playerActor} />}
+            <Treasure />
+          </Grid>
         </>
       );
     }
