@@ -1,4 +1,6 @@
 import { assign, createMachine } from 'xstate';
+import { choose } from 'xstate/lib/actions';
+import { isEqual } from 'lodash';
 
 import { MONSTER_STARTING_COORDS } from '@/constants';
 import { EDirection } from '@/enums';
@@ -14,11 +16,12 @@ const monsterMachine = createMachine<IMonsterContext, TMonsterEvent, IMonsterSta
     initial: 'up',
     on: {
       PLAYER_MOVED: {
-        actions: 'setPlayerCoords',
+        actions: ['setPlayerCoords', 'attemptAttack'],
       },
     },
     states: {
       up: {
+        entry: 'attemptAttack',
         after: {
           2000: {
             target: 'down',
@@ -27,6 +30,7 @@ const monsterMachine = createMachine<IMonsterContext, TMonsterEvent, IMonsterSta
         },
       },
       down: {
+        entry: 'attemptAttack',
         after: {
           2000: {
             target: 'up',
@@ -50,6 +54,10 @@ const monsterMachine = createMachine<IMonsterContext, TMonsterEvent, IMonsterSta
         ...context,
         playerCoords: event.coords,
       })),
+      attemptAttack: choose([{ cond: 'isMonsterAtPlayer', actions: 'attack' }]),
+    },
+    guards: {
+      isMonsterAtPlayer: ({ coords, playerCoords }) => isEqual(coords, playerCoords),
     },
   }
 );
