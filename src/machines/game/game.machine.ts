@@ -1,4 +1,4 @@
-import { createMachine, send } from 'xstate';
+import { createMachine, forwardTo, send } from 'xstate';
 import { isEqual } from 'lodash';
 import { choose } from 'xstate/lib/actions';
 
@@ -71,13 +71,17 @@ const gameMachine = createMachine<null, TGameEvent, IGameState>(
   {
     services: { playerMachine, monsterMachine },
     actions: {
-      onPlayerMoved: choose([{ cond: 'isPlayerAtDoor', actions: 'playerWalkedThrowDoor' }]),
+      onPlayerMoved: choose([
+        { cond: 'isPlayerAtDoor', actions: 'playerWalkedThrowDoor' },
+        { cond: 'hasMonster', actions: 'forwardToMonster' },
+      ]),
       playerWalkedThrowDoor: send('PLAYER_WALKED_THROUGH_DOOR'),
       resetPlayerCoords: send('RESET_PLAYER_COORDS', { to: 'playerActor' }),
       onPlayerMovedFinalLevel: choose([
         { cond: 'isPlayerAtTreasure', actions: ['playerGotTreasure'] },
       ]),
       playerGotTreasure: send('PLAYER_GOT_TREASURE'),
+      forwardToMonster: forwardTo('monsterActor'),
     },
     guards: {
       isPlayerAtDoor: (_, event) => {
@@ -89,6 +93,9 @@ const gameMachine = createMachine<null, TGameEvent, IGameState>(
         if (event.type !== 'PLAYER_MOVED') return false;
 
         return isEqual(event.coords, TREASURE_COORDS);
+      },
+      hasMonster: (context, event, meta) => {
+        return !!meta.state.children.monsterActor;
       },
     },
   }

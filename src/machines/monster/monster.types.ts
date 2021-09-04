@@ -1,6 +1,7 @@
 import { ActorRef } from 'xstate';
 
 import { TCoords } from '@/types';
+import { IPlayerMoved } from '@/machines';
 
 interface IMonsterContext {
   coords: TCoords;
@@ -11,6 +12,8 @@ interface IMonsterState {
   value: 'up' | 'down';
 }
 
-type TMonsterActor = ActorRef<any, IMonsterState>;
+type TMonsterEvent = IPlayerMoved;
 
-export type { IMonsterState, IMonsterContext, TMonsterActor };
+type TMonsterActor = ActorRef<TMonsterEvent, IMonsterState>;
+
+export type { IMonsterState, IMonsterContext, TMonsterActor, TMonsterEvent };
