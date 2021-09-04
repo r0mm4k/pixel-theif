@@ -1,4 +1,4 @@
-import { assign, createMachine } from 'xstate';
+import { assign, createMachine, sendParent } from 'xstate';
 import { choose } from 'xstate/lib/actions';
 import { isEqual } from 'lodash';
 
@@ -55,6 +55,7 @@ const monsterMachine = createMachine<IMonsterContext, TMonsterEvent, IMonsterSta
         playerCoords: event.coords,
       })),
       attemptAttack: choose([{ cond: 'isMonsterAtPlayer', actions: 'attack' }]),
+      attack: sendParent('ATTACK_PLAYER'),
     },
     guards: {
       isMonsterAtPlayer: ({ coords, playerCoords }) => isEqual(coords, playerCoords),

@@ -25,6 +25,9 @@ interface IPlayerMoved {
   type: 'PLAYER_MOVED';
   coords: TCoords;
 }
+interface IAttackPlayer {
+  type: 'ATTACK_PLAYER';
+}
 
 interface IGameState {
   context: null;
@@ -45,7 +48,8 @@ type TGameEvent =
   | IRestartButtonClicked
   | IHomeButtonClicked
   | IPlayerWalkedThroughDoor
-  | IPlayerMoved;
+  | IPlayerMoved
+  | IAttackPlayer;
 
 export type {
   IStartButtonClicked,
@@ -54,6 +58,7 @@ export type {
   IRestartButtonClicked,
   IHomeButtonClicked,
   IPlayerMoved,
+  IAttackPlayer,
   TGameEvent,
   IGameState,
 };

@@ -2,6 +2,7 @@ import { ActorRef } from 'xstate';
 
 import { TCoords } from '@/types';
 import { EDirection } from '@/enums';
+import { IAttackPlayer } from '@/machines/game';
 
 interface IArrowButtonClicked {
   type: 'ARROW_BUTTON_CLICKED';
@@ -18,10 +19,10 @@ interface IPlayerContext {
 
 interface IPlayerState {
   context: IPlayerContext;
-  value: 'alive' | 'dead';
+  value: 'alive' | 'dead' | 'determining';
 }
 
-type TPlayerEvent = IArrowButtonClicked | IResetPlayerCoords;
+type TPlayerEvent = IArrowButtonClicked | IResetPlayerCoords | IAttackPlayer;
 
 type TPlayerActor = ActorRef<TPlayerEvent, IPlayerState>;
 

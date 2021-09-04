@@ -44,6 +44,9 @@ const gameMachine = createMachine<null, TGameEvent, IGameState>(
             entry: 'resetPlayerCoords',
             on: {
               PLAYER_WALKED_THROUGH_DOOR: 'level3',
+              ATTACK_PLAYER: {
+                actions: 'forwardToPlayer',
+              },
             },
           },
           level3: {
@@ -82,6 +85,7 @@ const gameMachine = createMachine<null, TGameEvent, IGameState>(
       ]),
       playerGotTreasure: send('PLAYER_GOT_TREASURE'),
       forwardToMonster: forwardTo('monsterActor'),
+      forwardToPlayer: forwardTo('playerActor'),
     },
     guards: {
       isPlayerAtDoor: (_, event) => {

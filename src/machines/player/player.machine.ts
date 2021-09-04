@@ -23,9 +23,18 @@ const playerMachine = createMachine<IPlayerContext, TPlayerEvent, IPlayerState>(
           RESET_PLAYER_COORDS: {
             actions: 'onResetPlayerCoords',
           },
+          ATTACK_PLAYER: {
+            actions: ['reduceHealth', 'onResetPlayerCoords'],
+            target: 'determining',
+          },
         },
       },
-      dead: {},
+      dead: {
+        entry: 'broadcastPlayerDied',
+      },
+      determining: {
+        always: [{ cond: 'isHealthy', target: 'alive' }, { target: 'dead' }],
+      },
     },
   },
   {
@@ -51,6 +60,8 @@ const playerMachine = createMachine<IPlayerContext, TPlayerEvent, IPlayerState>(
       onResetPlayerCoords: assign((context) => {
         return { ...context, coords: PLAYER_STARTING_COORDS };
       }),
+      reduceHealth: assign((context) => ({ health: context.health - 1 })),
+      broadcastPlayerDied: sendParent('PLAYER_DIED'),
     },
     guards: {
       isAllowMove: ({ coords }, event) => {
@@ -60,6 +71,7 @@ const playerMachine = createMachine<IPlayerContext, TPlayerEvent, IPlayerState>(
 
         return isAllowCoords(targetCoords);
       },
+      isHealthy: ({ health }) => !!health,
     },
   }
 );
