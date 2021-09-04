@@ -10,6 +10,20 @@ Solutions to Brad Woods's "Pixel Thief" projects.
 
 Build a game using XState & React
 
+## 🔆 Demo
+
+Look [live-demo](https://pixel-thief.netlify.app/) example.
+
+## 🚀 Usage
+
+`npm install` - installing dependencies.
+
+`npm run start` - run dev build.
+
+`npm run storybook` - run application's components documentation.
+
+`npm run build` - create prod build.
+
 ## 🛠 Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
